@@ -30,7 +30,7 @@ def read_root():
 async def get_artists():
     try:
         async with app.state.db.acquire() as conn:
-            rows = await conn.fetch("SELECT * FROM artists")
+            rows = await conn.fetch("SELECT id, name FROM artists LIMIT 100")
         return [dict(row) for row in rows]
     except Exception as e:
         print(f"Erreur lors de la récupération des artistes : {e}")
